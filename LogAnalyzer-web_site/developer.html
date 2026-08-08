@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архитектура — LogAnalyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <nav id="nav-placeholder"></nav>
+
+    <h1>Архитектура и разработка</h1>
+    <p>LogAnalyzer написан на C# (.NET 9) и состоит из четырёх основных слоёв.</p>
+
+    <h2>Структура проекта</h2>
+    <pre style="font-size:0.9rem;">
+LogAnalyzer/
+├── Core/                    # Основная логика
+│   ├── Services/            # Оркестрация анализа (AnalysisOrchestrator)
+│   └── MenuSettingsFormation/
+│       ├── AsyncMainMethods/   # Чтение, анализ, запись (Reader/Analyzer/Writer)
+│       └── IO_SettingValues/   # Работа с JSON и путями
+├── Config/                  # Работа с конфигурацией (меню создания/редактирования)
+├── Data/                    # Модели данных (LogAnalyzerSettings) и инициализатор
+├── Utils_Helpers/           # Логирование, проверки ввода, хелперы меню
+└── Program.cs               # Точка входа
+    </pre>
+
+    <h2>Ключевые классы</h2>
+    <table>
+        <thead><tr><th>Класс</th><th>Назначение</th></tr></thead>
+        <tbody>
+            <tr><td><code>Program</code></td><td>Точка входа. Парсит аргументы, загружает конфиг, запускает оркестратор или интерактивное меню.</td></tr>
+            <tr><td><code>AnalysisOrchestrator</code></td><td>Управляет процессом анализа: сбор файлов, запуск чтения, обработка и запись отчёта.</td></tr>
+            <tr><td><code>LogAnalyzerSettings</code></td><td>Модель настроек (Keywords, LogPaths, MaxParallelFiles и т.д.).</td></tr>
+            <tr><td><code>LoadAndSave</code></td><td>Загрузка и сохранение JSON-конфигов.</td></tr>
+            <tr><td><code>Writer</code></td><td>Запись отчётов в разных форматах (txt, json, xml, wordgroup).</td></tr>
+            <tr><td><code>LogStreamProcessor</code></td><td>Обработка потока строк: поиск ключевых слов, сбор статистики.</td></tr>
+            <tr><td><code>Get_log</code></td><td>Встроенное логирование с использованием SemaphoreSlim для потокобезопасности.</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Поток выполнения</h2>
+    <ol>
+        <li>Загрузка настроек (глобальный или указанный через <code>-c</code> конфиг).</li>
+        <li>Сбор списка файлов (рекурсивно, с фильтром по расширениям).</li>
+        <li>Асинхронное чтение каждого файла построчно.</li>
+        <li>Поиск ключевых слов, сбор статистики по файлам и словам.</li>
+        <li>Формирование отчёта (консоль + файл в указанном формате).</li>
+    </ol>
+
+    <div id="footer-placeholder"></div>
+</div>
+<script src="loadTopBottom.js"></script>
+</body>
+</html>
