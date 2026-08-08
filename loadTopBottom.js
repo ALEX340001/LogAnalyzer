@@ -19,14 +19,13 @@ const navHtml = `
         <a href="${basePath}developer.html">Архитектура</a>
         <a href="${basePath}logging.html">Логирование</a>
         <a href="${basePath}dependencies.html">Зависимости</a>
-        <a href="${basePath}generator/generator.html">Генератор конфигурации</a>
+        <a href="${basePath}generator/index.html">Генератор конфигурации</a>
     </div>
 </div>
 <div class="dropdown">
     <a href="#" class="dropbtn">О проекте ▾</a>
     <div class="dropdown-content">
         <a href="${basePath}license.html">Лицензия</a>
-        <a href="${basePath}ai-acknowledgement.html">Благодарности</a>
     </div>
 </div>
 `;
