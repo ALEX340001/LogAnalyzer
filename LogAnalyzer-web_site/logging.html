@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логирование — LogAnalyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <nav id="nav-placeholder"></nav>
+
+    <h1>Система логирования</h1>
+    <p>В проекте используется встроенная система логирования через класс <code>Get_log</code>.</p>
+
+    <h2>Особенности</h2>
+    <ul>
+        <li>Логи пишутся в папку <code>Documents\MyLogger_Program_log\</code>.</li>
+        <li>Ежедневно создаётся новый файл с именем <code>YYYY-MM-DD_log.txt</code>.</li>
+        <li>Потокобезопасность обеспечивается через <code>SemaphoreSlim</code>.</li>
+        <li>При ошибках записи сообщение выводится в консоль.</li>
+    </ul>
+
+    <h2>Использование</h2>
+    <pre>await Get_log.LoggerAsync("Приложение запущено");</pre>
+
+    <h2>Отключение логирования</h2>
+    <p>При запуске с флагом <code>-d</code> или <code>--disable-logging</code> все вызовы <code>Get_log</code> игнорируются.</p>
+
+    <div id="footer-placeholder"></div>
+</div>
+<script src="loadTopBottom.js"></script>
+</body>
+</html>

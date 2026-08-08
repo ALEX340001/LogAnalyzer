@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конфигурация — LogAnalyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <nav id="nav-placeholder"></nav>
+
+    <h1>Конфигурационный файл setting.json</h1>
+    <p>Все настройки хранятся в файле <code>setting.json</code>, который по умолчанию находится в <code>Documents\MyAnalyzerLog\SettingJson\</code>.</p>
+
+    <h2>Структура JSON</h2>
+    <table>
+        <thead><tr><th>Поле</th><th>Тип</th><th>Обязательное</th><th>Описание</th></tr></thead>
+        <tbody>
+            <tr><td><code>Keywords</code></td><td>массив строк</td><td>❌ нет</td><td>Список ключевых слов для поиска (регистронезависимо)</td></tr>
+            <tr><td><code>IncludeSubdirectories</code></td><td>boolean</td><td>❌ нет</td><td>Включить рекурсивный обход подпапок (по умолчанию <code>true</code>)</td></tr>
+            <tr><td><code>MaxParallelFiles</code></td><td>число</td><td>❌ нет</td><td>Максимальное количество одновременно обрабатываемых файлов (по умолчанию 5)</td></tr>
+            <tr><td><code>LogPaths</code></td><td>массив строк</td><td>❌ нет</td><td>Список путей к файлам/папкам для анализа</td></tr>
+            <tr><td><code>DefaultSavePath</code></td><td>строка</td><td>❌ нет</td><td>Корневая папка для сохранения настроек и заметок</td></tr>
+            <tr><td><code>OutputFilePath</code></td><td>строка</td><td>❌ нет</td><td>Путь для сохранения результатов анализа</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Пример файла</h2>
+    <pre>{
+  "Keywords": ["ERROR", "Exception", "Timeout"],
+  "IncludeSubdirectories": true,
+  "MaxParallelFiles": 5,
+  "LogPaths": ["C:\\Logs\\app.log", "C:\\Logs\\system"],
+  "DefaultSavePath": "C:\\Users\\User\\Documents\\MyAnalyzerLog",
+  "OutputFilePath": "C:\\Reports\\result.txt"
+}</pre>
+
+    <div class="note">
+        <strong>Приоритет параметров</strong><br>
+        Параметры командной строки имеют приоритет над настройками из JSON-файла. Если указан <code>-c</code>, загружается указанный конфиг, иначе используется глобальный.
+    </div>
+
+    <div id="footer-placeholder"></div>
+</div>
+<script src="loadTopBottom.js"></script>
+</body>
+</html>
