@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogAnalyzer — анализатор логов</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <nav id="nav-placeholder"></nav>
+
+    <h1>LogAnalyzer</h1>
+    <p class="lead">
+        Консольная утилита для поиска ключевых слов в лог-файлах. Поддерживает рекурсивный обход папок,
+        гибкую настройку расширений и экспорт результатов в нескольких форматах.
+    </p>
+
+    <div class="note note-success">
+        <strong>Готов к использованию</strong>
+        Скачайте последнюю версию из раздела <a href="#" class="doc-link">Releases</a> или соберите из исходников.
+    </div>
+
+    <h2>Ключевые возможности</h2>
+    <ul class="feature-list">
+        <li>Асинхронное чтение файлов — потоковая обработка без перегрузки памяти</li>
+        <li>Рекурсивный обход папок с фильтром по расширениям</li>
+        <li>Гибкая настройка ключевых слов и путей через JSON-конфиг</li>
+        <li>Два режима запуска: <span class="highlight">CLI</span> и <span class="highlight">интерактивное меню</span></li>
+        <li>Экспорт результатов в <span class="accent">txt</span>, <span class="accent">json</span>, <span class="accent">xml</span> и <span class="accent">wordgroup</span></li>
+        <li>Встроенное логирование с маскированием данных</li>
+    </ul>
+
+    <h2>Быстрый старт</h2>
+    <div class="code-block">
+        <pre><span class="cmd-comment"># Поиск ошибок в одном файле</span>
+LogAnalyzer.exe -p "C:\Logs\app.log" -k "ERROR,Exception,Timeout"
+
+<span class="cmd-comment"># Анализ папки с сохранением JSON-отчёта</span>
+LogAnalyzer.exe -p "C:\Logs\" -o "report.json" -f json -r
+
+<span class="cmd-comment"># Использование пользовательского конфига</span>
+LogAnalyzer.exe -c "my_config.json" -p "C:\Logs\"</pre>
+    </div>
+
+    <div class="note note-warning">
+        <strong>Важно</strong> Для чтения защищённых логов (например, из системы) может потребоваться запуск от имени администратора.
+    </div>
+
+    <h2>Документация</h2>
+    <p class="nav-links">
+        <a href="configuration.html" class="doc-link">Настройка конфигурации</a> — описание JSON-файла настроек.<br>
+        <a href="cli.html" class="doc-link">CLI и команды</a> — все параметры командной строки.<br>
+        <a href="developer.html" class="doc-link">Архитектура проекта</a> — внутреннее устройство LogAnalyzer.
+    </p>
+
+    <div id="footer-placeholder"></div>
+</div>
+<script src="loadTopBottom.js"></script>
+</body>
+</html>
